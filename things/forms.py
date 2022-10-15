@@ -6,9 +6,10 @@ from .models import Thing
 # Create your forms here.
 class ThingForm(forms.ModelForm):
     class Meta:
+        # The class variable 'model' is recognised by django as a class (not object)
+        # by assigning model the class 'Thing', when django invokes the constructor of model
+        # e.g. model() it is actually invoking the constructor of Thing e.g. Thing()
+        # We have effectively localy changed the name of the class 'Thing' to be 'model'
         model = Thing
         fields = ['name', 'description', 'quantity']
         widgets = {'description': forms.Textarea()}
-    #name = forms.charField(label="Name", max_length=35, unique=True))
-    #description = forms.charField(label="Description", max_length=120, blank=True)
-    #quantity = forms.charField(label="NumberInput", validators=[MinValueValidator(0),MaxValueValidator(50))
